@@ -1,0 +1,17 @@
+{{- range .Values.tlsSecrets }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .name }}
+  labels:
+    app.kubernetes.io/name: {{ template "fullname" $ }}
+    helm.sh/chart: "{{ $.Chart.Name }}-{{ $.Chart.Version }}"
+    app.kubernetes.io/instance: "{{ $.Release.Name }}"
+    app.kubernetes.io/version: "{{ $.Chart.AppVersion }}"
+    app.kubernetes.io/managed-by: "{{ $.Release.Service }}"
+type: kubernetes.io/tls
+data:
+  tls.crt: {{ .certificate }}
+  tls.key: {{ .key }}
+---
+{{- end }} 
