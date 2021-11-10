@@ -1,0 +1,8 @@
+deployment:
+  container:
+    image: docker.io/xanya/forecast-app:version1.0
+ingress:
+  host: my-application.local
+secrets:
+  secret_key: c647ab49b15757dbe184259fff6fe4c5
+
